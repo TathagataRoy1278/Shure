@@ -1,4 +1,4 @@
-
+#!/usr/bin/python3
 # coding: utf-8
 
 # In[216]:
@@ -15,6 +15,7 @@ import os
 # In[5]:
 
 
+root_dir = '/home/tatan/Desktop/Tests/shure'
 config = {
     'apiKey': "AIzaSyD2gQOTBgyQuGHAm1cvM4ErUlgfvQOXQSI",
     'authDomain': "shure-35e0d.firebaseapp.com",
@@ -35,7 +36,7 @@ firebase = pyrebase.initialize_app(config)
 database = firebase.database()
 user = None
 try:
-    user = pickle.load(open('user','rb'))
+    user = pickle.load(open(os.path.join(root_dir,'user'),'rb'))
 except:
     pass
 # In[48]:
@@ -63,7 +64,7 @@ def sign_in(email, password):
     user = auth.sign_in_with_email_and_password(email, password)
     email = user['email']
     
-    pickle.dump(user,open('user','wb'))
+    pickle.dump(user,open(os.path.join(root_dir,'user'),'wb'))
     threading.Thread(target = trim_own).start()
     
 
@@ -249,7 +250,7 @@ def save_sign_in(opt):
         email = input()
         print("Password : ", end = '')
         password = input()
-        pfile = open('oauth','w+')
+        pfile = open(os.path.join(root_dir,'oauth'),'w+')
         pfile.write(email+" "+password)
         pfile.flush()
         pfile.close()
@@ -282,7 +283,7 @@ def main():
                     if "expired" in str(e).lower():
                         if 'oauth' in os.listdir():
                             print('Sign in expired, please wait while we log you in')
-                            dat = open('oauth','r+').read().split()
+                            dat = open(os.path.join(root_dir,'oauth'),'r+').read().split()
                             sign_in(dat[0],dat[1])
                             return
                         e = "Sign In Expired, Please Sign in again or do you want to save your password(insecure) (yes - y, no - n)"
