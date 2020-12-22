@@ -17,14 +17,14 @@ import os
 
 root_dir = '/home/tatan/Desktop/Tests/shure'
 config = {
-    'apiKey': "AIzaSyD2gQOTBgyQuGHAm1cvM4ErUlgfvQOXQSI",
+    'apiKey': "enter your api",
     'authDomain': "shure-35e0d.firebaseapp.com",
     'projectId': "shure-35e0d",
     'storageBucket': "shure-35e0d.appspot.com",
     'messagingSenderId': "346311417995",
-    'appId': "1:346311417995:web:879258027b30219c55b48e",
+    'appId': "enter api",
     'measurementId': "G-G09GXQBXRY",
-    'databaseURL':'https://shure-35e0d-default-rtdb.firebaseio.com'
+    'databaseURL':'enter url'
   }
 
 firebase = pyrebase.initialize_app(config)
